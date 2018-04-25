@@ -1,0 +1,14 @@
+version: '3'
+services:
+  sufel:
+    image: "gianalex/sufel"
+    ports:
+      - "8090:80"
+    environment:
+      - SUFEL_DB_DATABASE=sufel_dev
+      - SUFEL_ADMIN=123456
+  db:
+    image: "mysql:5.6"
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=""
