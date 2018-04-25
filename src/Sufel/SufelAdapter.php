@@ -131,10 +131,12 @@ class SufelAdapter
         ];
     }
 
-    private function setAuthToken(AuthToken $token)
+    private function setAuthToken(AuthToken $token = null)
     {
         $this->authToken = $token;
 
-        $this->api->getConfig()->setApiKey('Bearer', 'Bearer '.$token->getToken());
+        if ($token) {
+            $this->api->getConfig()->setApiKey('Authorization', 'Bearer '.$token->getToken());
+        }
     }
 }
