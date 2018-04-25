@@ -6,9 +6,9 @@ services:
       - "8090:80"
     environment:
       - SUFEL_DB_DATABASE=sufel_dev
+      - SUFEL_DB_PASS=123456
       - SUFEL_ADMIN=123456
   db:
     image: "mysql:5.6"
     environment:
-      - MYSQL_USER=root
-      - MYSQL_ROOT_PASSWORD=""
+      - MYSQL_ROOT_PASSWORD=123456
