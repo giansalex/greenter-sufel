@@ -72,7 +72,7 @@ class SufelAdapter
     public function isAuthorized($user)
     {
         if (!$this->authToken && $this->store) {
-            $this->authToken = $this->store->get($user);
+            $this->setAuthToken($this->store->get($user));
         }
 
         if (!$this->authToken) {
@@ -103,10 +103,10 @@ class SufelAdapter
             'password' => $password,
         ]));
 
-        $this->authToken = $result;
+        $this->setAuthToken($result);
 
         if ($this->store) {
-            $this->store->save($user, $this->authToken);
+            $this->store->save($user, $result);
         }
     }
 
@@ -129,5 +129,12 @@ class SufelAdapter
           'xml' => $res->getXml(),
           'pdf' => $res->getPdf(),
         ];
+    }
+
+    private function setAuthToken(AuthToken $token)
+    {
+        $this->authToken = $token;
+
+        $this->api->getConfig()->setApiKey('Bearer', 'Bearer '.$token->getToken());
     }
 }
