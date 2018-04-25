@@ -5,6 +5,7 @@ services:
     ports:
       - "8090:80"
     environment:
+      - SUFEL_DB_HOST=db
       - SUFEL_DB_DATABASE=sufel_dev
       - SUFEL_DB_PASS=
       - SUFEL_ADMIN=123456
