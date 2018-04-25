@@ -3,17 +3,19 @@
  * Created by PhpStorm.
  * User: Giansalex
  * Date: 24/04/2018
- * Time: 22:18
+ * Time: 22:18.
  */
 
 namespace Tests\Greenter\Sufel;
 
 use Greenter\SufelAdapter;
-use Sufel\Client\Api\CompanyApi;
-use Sufel\Client\Configuration;
 
+/**
+ * Class SufelAdapterTest.
+ */
 class SufelAdapterTest extends \PHPUnit_Framework_TestCase
 {
+    use SufelAdapterTrait;
     /**
      * @var SufelAdapter
      */
@@ -21,15 +23,12 @@ class SufelAdapterTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $config = Configuration::getDefaultConfiguration();
-        $config->setHost('http://localhost:8090/api');
-
-        $api = new CompanyApi(null, $config);
-        $this->sufel = new SufelAdapter($api);
+        $this->sufel = $this->getSufelAdapter();
     }
 
     public function testLogin()
     {
+        $this->sufel->login('20000000001', '123456');
         $this->assertTrue(true);
     }
 }
