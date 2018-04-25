@@ -61,7 +61,7 @@ class SufelPublisher implements NotificatorInterface
     {
         foreach ($files as $file) {
             if (strpos($file->getType(), $type) !== false) {
-                return $file->getContent();
+                return base64_encode($file->getContent());
             }
         }
 
